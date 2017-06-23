@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>明阅电子发票</title>
+		<script src="dist/js/mui.min.js"></script>
+		<link href="dist/css/mui.min.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet" />
+		<script src="js/common.js"></script>
+	</head>
+
+	<body class="index">
+		<header class="mui-bar mui-bar-nav" style="box-shadow: none;">
+			<a class="mui-icon mui-icon-gear mui-icon mui-icon-left-nav mui-pull-left" onclick="swap('settings')"></a>
+			<a class="mui-icon mui-icon-email mui-icon mui-icon-right-nav mui-pull-right" onclick="swap('message')"></a>
+			<h2 class="mui-title">上传发票</h2>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-icon mui-icon-upload"></span>
+				<span class="mui-tab-label">上传发票</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-chat">
+				<span class="mui-icon mui-icon-list"></span>
+				<span class="mui-tab-label">我的发票</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="tabbar" class="mui-control-content mui-active">
+				<img src="./img/bag.png" style="width:100%" />
+				<div class="mui-content-padded">
+					<div class="mui-input-row" style="margin: 15px 0 0px;">
+						<textarea class="mm-textarea" id="link" rows="4" placeholder="请复制电子发票链接地址粘贴在此处，提交上传！" style="margin-bottom: 10px;;"></textarea>
+						<p style="font-size: 12px;color:#8792A1;" id="finance"></p>
+					</div>
+					<button type="button" id="submit" class="mui-btn mui-btn-primary mui-btn-block">提交</button>
+				</div>
+			</div>
+			<div id="tabbar-with-chat" class="mui-control-content" style="position:absolute;top: 0; bottom: 50px;width:100%">
+
+				<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="top: 0; bottom: 0px;">
+					<div class="mui-scroll">
+						<div id="list" class="mui-content-padded" style="margin:60px 10px 10px">
+							<div class="mui-card">
+								<div class="mui-card-content">
+									<div class="mui-card-content-inner">
+										北京栋邦达科技有限公司
+										<br/>
+										<span class="date">2017 / 06 / 20</span>
+										<span class="money">￥888</span>
+									</div>
+								</div>
+								<div class="mui-card-footer">
+									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
+									<span class="mui-badge mm-badge">已打印</span>
+								</div>
+							</div>
+
+							<div class="mui-card">
+								<div class="mui-card-content">
+									<div class="mui-card-content-inner">
+										北京栋邦达科技有限公司
+										<br/>
+										<span class="date">2017 / 06 / 20</span>
+										<span class="money">￥888</span>
+									</div>
+								</div>
+								<div class="mui-card-footer">
+									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
+									<span class="mui-badge mui-badge-warning">未打印</span>
+								</div>
+							</div>
+							<div class="mui-card">
+								<div class="mui-card-content">
+									<div class="mui-card-content-inner">
+										北京栋邦达科技有限公司
+										<br/>
+										<span class="date">2017 / 06 / 20</span>
+										<span class="money">￥888</span>
+									</div>
+								</div>
+								<div class="mui-card-footer">
+									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
+									<span class="mui-badge mui-badge-warning">未打印</span>
+								</div>
+							</div>
+							<div class="mui-card">
+								<div class="mui-card-content">
+									<div class="mui-card-content-inner">
+										北京栋邦达科技有限公司
+										<br/>
+										<span class="date">2017 / 06 / 20</span>
+										<span class="money">￥888</span>
+									</div>
+								</div>
+								<div class="mui-card-footer">
+									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
+									<span class="mui-badge mui-badge-warning">未打印</span>
+								</div>
+							</div>
+							<div class="mui-card">
+								<div class="mui-card-content">
+									<div class="mui-card-content-inner">
+										北京栋邦达科技有限公司
+										<br/>
+										<span class="date">2017 / 06 / 20</span>
+										<span class="money">￥888</span>
+									</div>
+								</div>
+								<div class="mui-card-footer">
+									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
+									<span class="mui-badge mui-badge-warning">未打印</span>
+								</div>
+							</div>
+							<div class="mui-card">
+								<div class="mui-card-content">
+									<div class="mui-card-content-inner">
+										北京栋邦达科技有限公司
+										<br/>
+										<span class="date">2017 / 06 / 20</span>
+										<span class="money">￥888</span>
+									</div>
+								</div>
+								<div class="mui-card-footer">
+									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
+									<span class="mui-badge mui-badge-warning">未打印</span>
+								</div>
+							</div>
+							<div class="mui-card">
+								<div class="mui-card-content">
+									<div class="mui-card-content-inner">
+										北京栋邦达科技有限公司
+										<br/>
+										<span class="date">2017 / 06 / 20</span>
+										<span class="money">￥888</span>
+									</div>
+								</div>
+								<div class="mui-card-footer">
+									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
+									<span class="mui-badge mui-badge-warning">未打印</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--<div class="mui-popup-backdrop mui-active" style="background: rgba(0,0,0,0.1);"></div>
+		<div class="mui-popup mui-popup-in" style="display: block;">
+			<div class="mui-popup-inner">
+				正在加载...
+			</div>
+		</div>-->
+		
+		<script id="list-item" type="text/html">
+			<div class="mui-card">
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						{{name}}
+						<br/>
+						<span class="date">{{datetime}}</span>
+						<span class="money">￥{{money}}</span>
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<span><i class="mui-icon mui-icon-flag"></i> <span>{{datetime}}</span></span>
+					{{if isPrint}}
+					<span class="mui-badge mui-badge-warning">未打印</span> {{else}}
+					<span class="mui-badge mm-badge">已打印</span> {{/if}}
+				</div>
+			</div>
+		</script>
+		<script src="js/lib/FastClick.js"></script>
+		<script src="js/lib/art-template.js"></script>
+		<script src="js/index.js"></script>
+
+	</body>
+
+</html>

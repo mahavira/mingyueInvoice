@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>明阅电子发票</title>
+		<script src="dist/js/mui.min.js"></script>
+		<link href="dist/css/mui.min.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet" />
+		<script src="js/common.js"></script>
+	</head>
+
+	<body class="settings">
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+			<h1 class="mui-center mui-title">设置</h1>
+		</div>
+		<!--页面标题栏结束-->
+		<!--页面主内容区开始-->
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a>表示名称<span class="mui-pull-right"><input id="name" type="text" placeholder="张四"></span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>邮箱<span class="mui-pull-right">
+						<input type="text" id="email" placeholder="xxx@xxx.xxx">
+					</span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>主管财务<span class="mui-pull-right"><input id="financeId" type="text" placeholder=""></span></a>
+				</li>
+			</ul>
+			<br />
+
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell" onclick="swap('guide')">
+					<a class="mui-navigate-right">电子发票上传方法 <i class="mui-pull-right update"></i></a>
+				</li>
+				<li class="mui-table-view-cell" onclick="swap('password-change')">
+					<a class="mui-navigate-right">修改密码 <i class="mui-pull-right update"></i></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="tel:13587454758">联系我们 <i class="mui-pull-right update"></i></a>
+				</li>
+			</ul>
+			<br />
+
+			<ul class="mui-table-view">
+				<li id="logout" class="mui-table-view-cell" style="text-align: center;">
+					<a>退出登录</a>
+				</li>
+			</ul>
+		</div>
+		<script src="js/lib/FastClick.js"></script>
+		<script src="js/settings.js"></script>
+
+	</body>
+
+</html>

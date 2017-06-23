@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>明阅电子发票</title>
+		<script src="dist/js/mui.min.js"></script>
+		<link href="dist/css/mui.min.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet" />
+		<script src="js/common.js"></script>
+	</head>
+
+	<body class="register">
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+			<h1 class="mui-center mui-title">注册</h1>
+		</div>
+
+		<div class="mui-content form">
+
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label><span class="must">*</span>企业ID</label>
+					<input id="idCode" value="1048577" type="text" class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label><span class="must">*</span>表示名称</label>
+					<input id="name" value="1012" type="text" class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label><span class="must">*</span>主管财务</label>
+					<input id="financeUserId" value="1012" type="text" class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label>邮箱</label>
+					<input id="email" value="272921246@qq.com" type="text" class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label><span class="must">*</span>登录密码</label>
+					<input id="password" value="123456" type="password" class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label><span class="must">*</span>确认密码</label>
+					<input id="passwordAgain" value="123456" type="password" class="mui-input-clear">
+				</div>
+			</form>
+			<p class="explain">标注*的项目为必须输入项</p>
+
+			<button id="submit" type="button" class="mui-btn mui-btn-primary mui-btn-block">提交</button>
+
+		</div>
+		<script src="js/lib/FastClick.js"></script>
+		<script src="js/lib/promise.js"></script>
+		<script src="js/lib/validate.js"></script>
+		<script src="js/register-info.js"></script>
+	</body>
+
+</html>

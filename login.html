@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>明阅电子发票</title>
+		<script src="dist/js/mui.min.js"></script>
+		<link href="dist/css/mui.min.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet" />
+		<script src="js/common.js"></script>
+	</head>
+
+	<body class="login">
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div class="top">
+					<img src="./img/logo.png" />
+					<br /> 您好!
+					<br /> 欢迎使用明阅电子发票助手
+				</div>
+
+				<form class="mui-input-group form">
+					<div class="mui-input-row">
+						<label>账号</label>
+						<input id="username" type="text" placeholder="手机号/邮箱" value="18611852267">
+					</div>
+					<div class="mui-input-row">
+						<label>密码</label>
+						<input id="password" type="password" class="mui-input-clear" placeholder="******" value="123456">
+					</div>
+				</form>
+
+				<button id="submit" type="button" class="mui-btn mui-btn-primary mui-btn-block">登录</button>
+				<div class="mui-card-footer">
+					<a class="mui-card-link" onclick="swap('register')">注册</a>
+					<a class="mui-card-link" onclick="swap('password')">忘记密码</a>
+				</div>
+
+				<div class="bot">专利申请号：201710155660.0</div>
+			</div>
+
+		</div>
+		<script src="js/lib/FastClick.js"></script>
+		<script src="js/lib/validate.js"></script>
+		<script src="js/login.js"></script>
+	</body>
+</html>

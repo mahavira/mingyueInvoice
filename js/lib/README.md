@@ -1,0 +1,1 @@
+http://validatejs.org/#validators-equality

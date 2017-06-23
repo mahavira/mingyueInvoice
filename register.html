@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>明阅电子发票</title>
+		<script src="dist/js/mui.min.js"></script>
+		<link href="dist/css/mui.min.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet" />
+		<script src="js/common.js"></script>
+	</head>
+
+	<body class="register">
+		<div class="mui-navbar-inner mui-bar mui-bar-nav">
+			<button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+				</button>
+			<h1 class="mui-center mui-title">注册</h1>
+		</div>
+
+		<div class="mui-content form">
+
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>手机号</label>
+					<input id="mobile" value="18611852267" type="text" class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label>手机验证码</label>
+					<input id="smsCode" value="1234" type="text">
+					<a href="javascript:;" class="smsCode">获取验证码</a>
+				</div>
+			</form>
+
+			<button id="next" type="button" class="mui-btn mui-btn-primary mui-btn-block">下一步</button>
+
+		</div>
+		<script src="js/lib/FastClick.js"></script>
+		<script src="js/lib/promise.js"></script>
+		<script src="js/lib/validate.js"></script>
+		<script src="js/register.js"></script>
+	</body>
+
+</html>
