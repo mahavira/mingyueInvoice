@@ -24,6 +24,10 @@
 		swap('login')
 	})
 
+	getFinanceUsers(function(html) {
+		mui('#financeId')[0].innerHTML = html
+	})
+
 	mui.each(urls, function(key, item) {
 		mui("#" + key)[0].addEventListener('blur', function() {
 			var val = mui('#' + key)[0].value

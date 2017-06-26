@@ -49,7 +49,7 @@
 			state[arguments[0]] = arguments[1]
 		}
 		console.log(JSON.stringify(state))
-//		alert(JSON.stringify(state))
+		//		alert(JSON.stringify(state))
 		localStorage.setItem('$state', JSON.stringify(state));
 	}
 	/**
@@ -127,9 +127,9 @@
 	 * @param {Object} error
 	 */
 	window.$http = function(url, data, success, error) {
-		mui.extend(data, {
+		data = mui.extend({
 			id: getState('id')
-		})
+		}, data)
 		console.log('开始请求：' + baseUrl + url, JSON.stringify(data))
 
 		mui.ajax(baseUrl + url, {
@@ -148,5 +148,22 @@
 				error()
 			}
 		})
+	}
+	window.getFinanceUsers = function(callback) {
+		$http('app/login/getFinanceUsers', {
+			idCode: 1048577
+		}, function(req) {
+			if(req.res_code === 200) {
+				var html = ''
+				mui.each(req.res_data, function (index, item) {
+					html += '<option value="'+item.id+'">'+item.name+'</option>'
+				})
+				callback(html)
+			} else {
+
+			}
+		}, function(xhr, type, errorThrown) {
+
+		});
 	}
 }(mui, document))

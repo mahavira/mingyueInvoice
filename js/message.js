@@ -64,4 +64,19 @@
 			mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
 		})
 	}
+	mui(document).on('tap', '.mui-table-view-cell', function () {
+		var id = this.dataset.id
+		$http('app/bill/readMyMessage', {
+			id: id
+		}, function(req) {
+			if(req.res_code === 200) {
+			} else {
+
+			}
+		}, function(xhr, type, errorThrown) {
+
+		})
+	})
+
+
 }(mui, document));

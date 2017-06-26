@@ -39,6 +39,10 @@
 			}
 		}
 	};
+	getFinanceUsers(function(html){
+		mui('#financeUserId')[0].innerHTML = html
+	})
+
 	mui(".register").on('tap', '#submit', function() {
 		$valids(constraints, function(attributes) {
 			var smsCode = getState('smsCode')

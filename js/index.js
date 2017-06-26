@@ -52,17 +52,18 @@
 	
 	var pageItem = 5
 	var pageNo = 0
-
+	console.log(getState('id'))
 	function fetchInvoices(success, error) {
 		pageNo++
-		$http('app/invoice/invoice', {
+		$http('app/bill/getMyBills', {
 			pageNo: pageNo
 		}, function(req) {
+			console.log(JSON.stringify(req))
 			if(req.res_code === 200) {
-				success(req.res_data.list)
-				if(req.res_data.list.length < pageItem) {
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
-				}
+//				success(req.res_data.list)
+//				if(req.res_data.list.length < pageItem) {
+//					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+//				}
 			} else {
 				error()
 			}
