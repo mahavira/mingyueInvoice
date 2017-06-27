@@ -34,6 +34,7 @@
 		}
 	};
 	mui(".login").on('tap', '#submit', function() {
+		window.backdrop('正在登录')
 		$valids(constraints, function(attributes) {
 			$http('app/login/login', attributes, function(req) {
 				if(req.res_code === 200) {
@@ -42,7 +43,9 @@
 				} else {
 					mui.toast(req.res_data ? req.res_data : '登录失败')
 				}
+				window.backdrop('hide')
 			}, function(xhr, type, errorThrown) {
+				window.backdrop('hide')
 				mui.toast('登录失败')
 			})
 		})

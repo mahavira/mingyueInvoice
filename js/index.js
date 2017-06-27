@@ -41,6 +41,7 @@
 		}
 	})
 	mui.plusReady(function() {
+
 		var user = getState()
 		mui('#finance')[0].innerHTML = '主管财务：' + user.name + ' ' + user.financeId
 		fetchInvoices(function(data) {
@@ -50,7 +51,7 @@
 		}, function() {})
 
 	})
-	
+
 	var pageItem = 5
 	var pageNo = 0
 	function fetchInvoices(success, error) {

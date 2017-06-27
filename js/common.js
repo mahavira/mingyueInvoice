@@ -173,4 +173,24 @@
 
 		});
 	}
+	window.backdrop = function (text) {
+		if (!mui('#backdrop').length) {
+			var html = '<div id="backdrop">' + 
+			'<div id="backdropBg" class="mui-popup-backdrop mui-active" style="background: rgba(0,0,0,0.1);"></div>' +
+			'<div id="popup" class="mui-popup mui-popup-in" style="display: block;">' +
+				'<div class="mui-popup-inner">' +
+					'<i class="mui-icon mui-icon-spinner mui-spin rotate"></i>' +
+					'<span id="popupText">'+(text?text:'正在加载...')+'</span>' +
+				'</div>' +
+			'</div>' + 
+			'</div>'
+			mui('body')[0].appendChild(parseDom(html))
+		} else if (text) {
+			mui('#popupText')[0].innerText = text
+			mui('#backdrop')[0].style.display = 'block'
+		} else if (text ==='hide') {
+			mui('#backdrop')[0].style.display = 'none'
+		}
+	}
+
 }(mui, document))
