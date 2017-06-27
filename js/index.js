@@ -10,9 +10,10 @@
 
 	function submit(link) {
 		$http('app/bill/uploadUrl', {
-			billUrl: link
+			billUrl: link,
+			financeId: getState('financeId')
 		}, function(req) {
-			if(req.res_data === 200) {
+			if(req.res_code == 200) {
 				mui.toast('上传成功！')
 				setTimeout(function() {
 					mui('#tabbar')[0].classList.remove('mui-active')
@@ -52,22 +53,25 @@
 	
 	var pageItem = 5
 	var pageNo = 0
-	console.log(getState('id'))
 	function fetchInvoices(success, error) {
 		pageNo++
 		$http('app/bill/getMyBills', {
 			pageNo: pageNo
 		}, function(req) {
-			console.log(JSON.stringify(req))
-			if(req.res_code === 200) {
-//				success(req.res_data.list)
-//				if(req.res_data.list.length < pageItem) {
-//					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
-//				}
+			if(req.res_code == 200) {
+				success(req.res_data.list)
+				if(req.res_data.list && req.res_data.list.length < pageItem) {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+				}
 			} else {
+				mui.toast(req.res_data)
+				if (req.res_code == 901) {
+					toLogin()
+				}
 				error()
 			}
 		}, function(xhr, type, errorThrown) {
+			mui.toast('请求错误！')
 			error()
 		})
 	}

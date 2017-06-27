@@ -77,6 +77,12 @@
 				break;
 		}
 	}
+	
+	window.toLogin = function () {
+		clearState()
+		swap('login')
+		plus.webview.currentWebview().close()
+	}
 
 	function openWindow(id) {
 		mui.openWindow({
@@ -155,8 +161,9 @@
 		}, function(req) {
 			if(req.res_code === 200) {
 				var html = ''
+				var financeId = getState('financeId')
 				mui.each(req.res_data, function (index, item) {
-					html += '<option value="'+item.id+'">'+item.name+'</option>'
+					html += '<option value="'+item.id+'" '+(financeId==item.id ? 'selected': '')+'>'+item.name+'</option>'
 				})
 				callback(html)
 			} else {

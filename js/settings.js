@@ -19,10 +19,7 @@
 		email: 'app/user/updateEmail',
 		financeId: 'app/user/updateUserFinance'
 	}
-	mui(".settings").on('tap', '#logout', function() {
-		clearState()
-		swap('login')
-	})
+	mui(".settings").on('tap', '#logout', toLogin)
 
 	getFinanceUsers(function(html) {
 		mui('#financeId')[0].innerHTML = html
