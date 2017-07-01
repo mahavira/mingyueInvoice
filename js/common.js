@@ -16,11 +16,13 @@
 	}
 	// 扩展API准备完成后要执行的操作
 	function plusReady() {}
+	
+	var env = 'production' // development production
 	/**
 	 * api根路径
 	 */
-	//	window.baseUrl = 'http://localhost:3000/project_dzff/'
-	window.baseUrl = 'http://120.92.45.7/project_dzff/'
+	window.baseUrl = env === 'production' ? 'http://120.92.45.7/project_dzff/' : 'http://localhost:3000/project_dzff/'
+
 	/**
 	 * 获取状态
 	 * getState('key') 获取某个值
@@ -77,8 +79,8 @@
 				break;
 		}
 	}
-	
-	window.toLogin = function () {
+
+	window.toLogin = function() {
 		clearState()
 		swap('login')
 		plus.webview.currentWebview().close()
@@ -86,12 +88,12 @@
 
 	function openWindow(id) {
 		mui.openWindow({
-			id: id,
+
 			url: id + '.html',
 			show: {
 				aniShow: 'pop-in'
 			},
-			preload: true,
+			preload: false,
 			styles: {
 				popGesture: 'hide'
 			},
@@ -162,8 +164,8 @@
 			if(req.res_code === 200) {
 				var html = ''
 				var financeId = getState('financeId')
-				mui.each(req.res_data, function (index, item) {
-					html += '<option value="'+item.id+'" '+(financeId==item.id ? 'selected': '')+'>'+item.name+'</option>'
+				mui.each(req.res_data, function(index, item) {
+					html += '<option value="' + item.id + '" ' + (financeId == item.id ? 'selected' : '') + '>' + item.name + '</option>'
 				})
 				callback(html)
 			} else {
@@ -173,23 +175,25 @@
 
 		});
 	}
-	window.backdrop = function (text) {
-		if (!mui('#backdrop').length) {
-			var html = '<div id="backdrop">' + 
-			'<div id="backdropBg" class="mui-popup-backdrop mui-active" style="background: rgba(0,0,0,0.1);"></div>' +
-			'<div id="popup" class="mui-popup mui-popup-in" style="display: block;">' +
+	window.backdrop = function(text) {
+		if(text === 'hide') {
+			mui('#backdrop')[0].style.display = 'none'
+			return
+		}
+		if(!mui('#backdrop').length) {
+			var html = '<div id="backdrop">' +
+				'<div id="backdropBg" class="mui-popup-backdrop mui-active" style="background: rgba(0,0,0,0.1);"></div>' +
+				'<div id="popup" class="mui-popup mui-popup-in" style="display: block;">' +
 				'<div class="mui-popup-inner">' +
-					'<i class="mui-icon mui-icon-spinner mui-spin rotate"></i>' +
-					'<span id="popupText">'+(text?text:'正在加载...')+'</span>' +
+				'<i class="mui-icon mui-icon-spinner mui-spin rotate"></i>' +
+				'<span id="popupText">' + (text ? text : '正在加载...') + '</span>' +
 				'</div>' +
-			'</div>' + 
-			'</div>'
+				'</div>' +
+				'</div>'
 			mui('body')[0].appendChild(parseDom(html))
-		} else if (text) {
+		} else if(text) {
 			mui('#popupText')[0].innerText = text
 			mui('#backdrop')[0].style.display = 'block'
-		} else if (text ==='hide') {
-			mui('#backdrop')[0].style.display = 'none'
 		}
 	}
 

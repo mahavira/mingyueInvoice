@@ -15,6 +15,7 @@
 		}, function(req) {
 			if(req.res_code == 200) {
 				mui.toast('上传成功！')
+				app.fetch(true)
 				setTimeout(function() {
 					mui('#tabbar')[0].classList.remove('mui-active')
 					mui('#tabbar-with-chat')[0].classList.add('mui-active')
@@ -40,63 +41,70 @@
 			}
 		}
 	})
+	var $pullrefresh = null
 	mui.plusReady(function() {
-
+		$pullrefresh = mui('#pullrefresh')
 		var user = getState()
 		mui('#finance')[0].innerHTML = '主管财务：' + user.name + ' ' + user.financeId
-		fetchInvoices(function(data) {
-			mui.each(data, function(index, item) {
-				mui('#list')[0].appendChild(parseDom(template('list-item', item)))
-			})
-		}, function() {})
-
 	})
-
-	var pageItem = 5
-	var pageNo = 0
-	function fetchInvoices(success, error) {
-		pageNo++
-		$http('app/bill/getMyBills', {
-			pageNo: pageNo
-		}, function(req) {
-			if(req.res_code == 200) {
-				success(req.res_data.list)
-				if(req.res_data.list && req.res_data.list.length < pageItem) {
-					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
-				}
-			} else {
-				mui.toast(req.res_data)
-				if (req.res_code == 901) {
-					toLogin()
-				}
-				error()
-			}
-		}, function(xhr, type, errorThrown) {
-			mui.toast('请求错误！')
-			error()
-		})
-	}
 
 	/**
 	 * 下拉刷新具体业务实现
 	 */
 	function pulldownRefresh() {
-		setTimeout(function() {
-			mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
-		}, 1500);
+		app.fetch(true)
 	}
 	/**
 	 * 上拉加载具体业务实现
 	 */
 	function pullupRefresh() {
-		fetchInvoices(function(data) {
-			mui.each(data, function(index, item) {
-				mui('#list')[0].appendChild(parseDom(template('list-item', item)))
-			})
-			mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-		}, function() {
-			mui.toast('请求错误！')
-			mui('#pullrefresh').pullRefresh().endPullupToRefresh(false)
-		})
+		app.fetch()
 	}
+
+	var app = new Vue({
+		el: '#list',
+		data: function() {
+			return {
+				pageNo: 1,
+				pageItem: 30,
+				data: {}
+			}
+		},
+		methods: {
+			fetch: function(isDownRefresh) {
+				isDownRefresh = isDownRefresh || false
+				$http('app/bill/getMyBills', {
+					pageNo: isDownRefresh ? 0 : this.pageNo
+				}, function(req) {
+					if(req.res_code === 200 && req.res_data.list) {
+						if(!isDownRefresh) app.pageNo++
+						var list = {}
+						mui.each(req.res_data.list, function(i, n) {
+							list[n.id] = n
+						})
+						app.data = mui.extend({}, app.data, list)
+						app.endPullToRefresh(isDownRefresh)
+						if(req.res_data.list.length < app.pageItem) {
+							$pullrefresh.pullRefresh().endPullupToRefresh(true)
+						}
+					} else {
+						if(req.res_code == 901) {
+							mui.toast(req.res_data)
+							toLogin()
+							return false
+						}
+						app.endPullToRefresh(isDownRefresh)
+					}
+				}, function(xhr, type, errorThrown) {
+					mui.toast('请求错误！')
+					app.endPullToRefresh(isDownRefresh)
+				})
+			},
+			endPullToRefresh (isDownRefresh) {
+				if (isDownRefresh) $pullrefresh.pullRefresh().endPulldownToRefresh()
+				else $pullrefresh.pullRefresh().endPullupToRefresh(false)
+			}
+		}
+	})
+
 }(mui, document));

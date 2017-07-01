@@ -39,107 +39,21 @@
 				</div>
 			</div>
 			<div id="tabbar-with-chat" class="mui-control-content" style="position:absolute;top: 0; bottom: 50px;width:100%">
-
 				<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="top: 0; bottom: 0px;">
 					<div class="mui-scroll">
 						<div id="list" class="mui-content-padded" style="margin:60px 10px 10px">
-							<div class="mui-card">
+							<div class="mui-card" v-for="item in data">
 								<div class="mui-card-content">
 									<div class="mui-card-content-inner">
-										北京栋邦达科技有限公司
+										{{item.name}}
 										<br/>
-										<span class="date">2017 / 06 / 20</span>
-										<span class="money">￥888</span>
+										<span class="date">{{item.datetime}}</span>
+										<span class="money">￥{{item.money}}</span>
 									</div>
 								</div>
 								<div class="mui-card-footer">
-									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
-									<span class="mui-badge mm-badge">已打印</span>
-								</div>
-							</div>
-
-							<div class="mui-card">
-								<div class="mui-card-content">
-									<div class="mui-card-content-inner">
-										北京栋邦达科技有限公司
-										<br/>
-										<span class="date">2017 / 06 / 20</span>
-										<span class="money">￥888</span>
-									</div>
-								</div>
-								<div class="mui-card-footer">
-									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
-									<span class="mui-badge mui-badge-warning">未打印</span>
-								</div>
-							</div>
-							<div class="mui-card">
-								<div class="mui-card-content">
-									<div class="mui-card-content-inner">
-										北京栋邦达科技有限公司
-										<br/>
-										<span class="date">2017 / 06 / 20</span>
-										<span class="money">￥888</span>
-									</div>
-								</div>
-								<div class="mui-card-footer">
-									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
-									<span class="mui-badge mui-badge-warning">未打印</span>
-								</div>
-							</div>
-							<div class="mui-card">
-								<div class="mui-card-content">
-									<div class="mui-card-content-inner">
-										北京栋邦达科技有限公司
-										<br/>
-										<span class="date">2017 / 06 / 20</span>
-										<span class="money">￥888</span>
-									</div>
-								</div>
-								<div class="mui-card-footer">
-									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
-									<span class="mui-badge mui-badge-warning">未打印</span>
-								</div>
-							</div>
-							<div class="mui-card">
-								<div class="mui-card-content">
-									<div class="mui-card-content-inner">
-										北京栋邦达科技有限公司
-										<br/>
-										<span class="date">2017 / 06 / 20</span>
-										<span class="money">￥888</span>
-									</div>
-								</div>
-								<div class="mui-card-footer">
-									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
-									<span class="mui-badge mui-badge-warning">未打印</span>
-								</div>
-							</div>
-							<div class="mui-card">
-								<div class="mui-card-content">
-									<div class="mui-card-content-inner">
-										北京栋邦达科技有限公司
-										<br/>
-										<span class="date">2017 / 06 / 20</span>
-										<span class="money">￥888</span>
-									</div>
-								</div>
-								<div class="mui-card-footer">
-									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
-									<span class="mui-badge mui-badge-warning">未打印</span>
-								</div>
-							</div>
-							<div class="mui-card">
-								<div class="mui-card-content">
-									<div class="mui-card-content-inner">
-										北京栋邦达科技有限公司
-										<br/>
-										<span class="date">2017 / 06 / 20</span>
-										<span class="money">￥888</span>
-									</div>
-								</div>
-								<div class="mui-card-footer">
-									<span><i class="mui-icon mui-icon-flag"></i> <span>2017/12-12</span></span>
-									<span class="mui-badge mui-badge-warning">未打印</span>
+									<span><i class="mui-icon mui-icon-flag"></i> <span>{{item.datetime}}</span></span>
+									<span class="mui-badge mui-badge-warning" :class="item.isPrint?'mui-badge-warning':'mm-badge'">{{item.isPrint?'未打印':'已打印'}}</span>
 								</div>
 							</div>
 						</div>
@@ -147,29 +61,9 @@
 				</div>
 			</div>
 		</div>
-		
-		<script id="list-item" type="text/html">
-			<div class="mui-card">
-				<div class="mui-card-content">
-					<div class="mui-card-content-inner">
-						{{name}}
-						<br/>
-						<span class="date">{{datetime}}</span>
-						<span class="money">￥{{money}}</span>
-					</div>
-				</div>
-				<div class="mui-card-footer">
-					<span><i class="mui-icon mui-icon-flag"></i> <span>{{datetime}}</span></span>
-					{{if isPrint}}
-					<span class="mui-badge mui-badge-warning">未打印</span> {{else}}
-					<span class="mui-badge mm-badge">已打印</span> {{/if}}
-				</div>
-			</div>
-		</script>
 		<script src="js/lib/FastClick.js"></script>
-		<script src="js/lib/art-template.js"></script>
+		<script src="js/lib/vue.min.js"></script>
 		<script src="js/index.js"></script>
-
 	</body>
 
 </html>

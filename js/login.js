@@ -44,6 +44,7 @@
 					mui.toast(req.res_data ? req.res_data : '登录失败')
 				}
 				window.backdrop('hide')
+				console.log('login ok')
 			}, function(xhr, type, errorThrown) {
 				window.backdrop('hide')
 				mui.toast('登录失败')
