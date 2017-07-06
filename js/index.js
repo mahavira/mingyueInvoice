@@ -46,6 +46,7 @@
 		$pullrefresh = mui('#pullrefresh')
 		var user = getState()
 		mui('#finance')[0].innerHTML = '主管财务：' + user.name + ' ' + user.financeId
+		app.fetch(true)
 	})
 
 	/**
