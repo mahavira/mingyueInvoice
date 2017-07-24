@@ -30,6 +30,7 @@
 	}
 
 	mui.init({
+		statusBarBackground:"#509AFF",
 		pullRefresh: {
 			container: '#pullrefresh',
 			down: {
@@ -69,6 +70,17 @@
 				pageNo: 1,
 				pageItem: 30,
 				data: {}
+			}
+		},
+		computed: {
+			hasData: function () {
+				console.log(1)
+				var result = false
+				for (var i in this.data) {
+					result = true
+					break
+				}
+				return result
 			}
 		},
 		methods: {

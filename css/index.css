@@ -1,3 +1,9 @@
+body{
+	background-color: #FFF;
+}
+.mui-content{
+	background-color: #FFF;
+}
 .mui-bar-nav {
 	background-color: rgba(80, 154, 255, 1);
 }
@@ -265,7 +271,6 @@
 }
 
 .form .smsCode {
-	color: #509AFF;
 	font-size: 14px;
 	position: absolute;
 	z-index: 1;
@@ -273,6 +278,9 @@
 	right: 5px;
 	width: 75px;
 	text-align: left;
+}
+#downCode{
+	display: none;
 }
 
 .form .mui-input-group:before,
@@ -321,4 +329,10 @@
 	100% {
 		transform: rotate(360deg);
 	}
+}
+.settings{
+	background: #EFF1F4;
+}
+.settings .mui-content{
+	background: #EFF1F4;
 }

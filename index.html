@@ -42,7 +42,7 @@
 				<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="top: 0; bottom: 0px;">
 					<div class="mui-scroll">
 						<div id="list" class="mui-content-padded" style="margin:60px 10px 10px">
-							<div class="mui-card" v-for="item in data">
+							<div v-if="hasData" class="mui-card" v-for="item in data">
 								<div class="mui-card-content">
 									<div class="mui-card-content-inner">
 										{{item.name}}
@@ -55,6 +55,9 @@
 									<span><i class="mui-icon mui-icon-flag"></i> <span>{{item.datetime}}</span></span>
 									<span class="mui-badge mui-badge-warning" :class="item.isPrint?'mui-badge-warning':'mm-badge'">{{item.isPrint?'未打印':'已打印'}}</span>
 								</div>
+							</div>
+							<div  v-if="!hasData" style="text-align: center;color: #aaa;">
+								无数据
 							</div>
 						</div>
 					</div>

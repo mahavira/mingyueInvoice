@@ -1,4 +1,5 @@
 (function(mui, doc) {
+	console.log('-----')
 	//取消浏览器的所有事件，使得active的样式在手机上正常生效
 	doc.addEventListener('touchstart', function() {
 		return false

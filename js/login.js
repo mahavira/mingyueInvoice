@@ -7,6 +7,7 @@
 
 	// 扩展API准备完成后要执行的操作
 	function plusReady() {
+		plus.navigator.setStatusBarBackground("#FFF")
 		var state = getState()
 		if(state.token) {
 			var mainPage = mui.preload({
@@ -34,8 +35,8 @@
 		}
 	};
 	mui(".login").on('tap', '#submit', function() {
-		window.backdrop('正在登录')
 		$valids(constraints, function(attributes) {
+			window.backdrop('正在登录')
 			$http('app/login/login', attributes, function(req) {
 				if(req.res_code === 200) {
 					setState(req.res_data)
