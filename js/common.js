@@ -1,13 +1,12 @@
 (function(mui, doc) {
-	console.log('-----')
 	//取消浏览器的所有事件，使得active的样式在手机上正常生效
-	doc.addEventListener('touchstart', function() {
-		return false
-	}, true)
-	// 禁止选择
-	doc.oncontextmenu = function() {
-		return false
-	}
+//	doc.addEventListener('touchstart', function() {
+//		return false
+//	}, true)
+//	// 禁止选择
+//	doc.oncontextmenu = function() {
+//		return false
+//	}
 	mui.init()
 	// 扩展API是否准备好，如果没有则监听“plusready"事件
 	if(window.plus) {

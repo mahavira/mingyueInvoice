@@ -47,6 +47,7 @@
 		$valids(constraints, function(attributes) {
 			var smsCode = getState('smsCode')
 			var mobile = getState('mobile')
+			attributes.roleType = 1
 			mui.extend(attributes, {
 				smsCode: smsCode,
 				mobile: mobile

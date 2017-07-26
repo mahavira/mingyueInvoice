@@ -15,7 +15,7 @@
 		}, function(req) {
 			if(req.res_code == 200) {
 				mui.toast('上传成功！')
-				app.fetch(true)
+				fetch(true)
 				setTimeout(function() {
 					mui('#tabbar')[0].classList.remove('mui-active')
 					mui('#tabbar-with-chat')[0].classList.add('mui-active')
@@ -30,7 +30,7 @@
 	}
 
 	mui.init({
-		statusBarBackground:"#509AFF",
+		statusBarBackground: "#509AFF",
 		pullRefresh: {
 			container: '#pullrefresh',
 			down: {
@@ -47,77 +47,96 @@
 		$pullrefresh = mui('#pullrefresh')
 		var user = getState()
 		mui('#finance')[0].innerHTML = '主管财务：' + user.name + ' ' + user.financeId
-		app.fetch(true)
 	})
 
 	/**
 	 * 下拉刷新具体业务实现
 	 */
 	function pulldownRefresh() {
-		app.fetch(true)
+		fetch(true)
 	}
 	/**
 	 * 上拉加载具体业务实现
 	 */
 	function pullupRefresh() {
-		app.fetch()
+		fetch()
 	}
 
-	var app = new Vue({
-		el: '#list',
-		data: function() {
-			return {
-				pageNo: 1,
-				pageItem: 30,
-				data: {}
-			}
-		},
-		computed: {
-			hasData: function () {
-				console.log(1)
-				var result = false
-				for (var i in this.data) {
-					result = true
-					break
-				}
-				return result
-			}
-		},
-		methods: {
-			fetch: function(isDownRefresh) {
-				isDownRefresh = isDownRefresh || false
-				$http('app/bill/getMyBills', {
-					pageNo: isDownRefresh ? 0 : this.pageNo
-				}, function(req) {
-					if(req.res_code === 200 && req.res_data.list) {
-						if(!isDownRefresh) app.pageNo++
-						var list = {}
-						mui.each(req.res_data.list, function(i, n) {
-							list[n.id] = n
-						})
-						app.data = mui.extend({}, app.data, list)
-						app.endPullToRefresh(isDownRefresh)
-						if(req.res_data.list.length < app.pageItem) {
-							$pullrefresh.pullRefresh().endPullupToRefresh(true)
-						}
-					} else {
-						if(req.res_code == 901) {
-							mui.toast(req.res_data)
-							toLogin()
-							return false
-						}
-						app.endPullToRefresh(isDownRefresh)
-					}
-				}, function(xhr, type, errorThrown) {
-					mui.toast('请求错误！')
-					app.endPullToRefresh(isDownRefresh)
-				})
-			},
-			endPullToRefresh (isDownRefresh) {
-				if (isDownRefresh) $pullrefresh.pullRefresh().endPulldownToRefresh()
-				else $pullrefresh.pullRefresh().endPullupToRefresh(false)
-			}
-		}
+	var pageNo = 1
+	var pageItem = 30
+	var app = angular.module('myApp', [])
+	var scope
+	app.controller('myCtrl', function($scope) {
+		$scope.data = {}
+		$scope.hasData = false
+		scope = $scope
+		fetch(true)
 	})
+
+	function fetch(isDownRefresh) {
+		isDownRefresh = isDownRefresh || false
+		$http('app/bill/getMyBills', {
+			pageNo: isDownRefresh ? 0 : pageNo
+		}, function(req) {
+			// 测试
+//						req.res_data.list = [{
+//								id: 1,
+//								name: 'xx',
+//								datetime: '2012-12-12',
+//								money: 100,
+//								isPrint: true
+//							},
+//							{
+//								id: 2,
+//								name: 'xx',
+//								datetime: '2012-12-12',
+//								money: 120,
+//								isPrint: false
+//							},
+//							{
+//								id: 3,
+//								name: 'xx',
+//								datetime: '2012-12-12',
+//								money: 120,
+//								isPrint: false
+//							}
+//						]
+			if(req.res_code === 200 && req.res_data.list) {
+				if(!isDownRefresh) pageNo++
+					var list = {}
+				mui.each(req.res_data.list, function(i, n) {
+					list[n.id] = n
+				})
+				scope.$apply(function() {
+					if(isDownRefresh) scope.data = mui.extend({}, list, scope.data)
+					else scope.data = mui.extend({}, scope.data, list)
+					var hasData = false
+					mui.each(scope.data, function(i, n) {
+						hasData = true
+					})
+					scope.hasData = hasData
+				})
+				endPullToRefresh(isDownRefresh)
+				if(req.res_data.list.length < pageItem) {
+					$pullrefresh.pullRefresh().endPullupToRefresh(true)
+				}
+			} else {
+				if(req.res_code == 901) {
+					mui.toast(req.res_data)
+					toLogin()
+					return false
+				}
+				endPullToRefresh(isDownRefresh)
+			}
+		}, function(xhr, type, errorThrown) {
+			mui.toast('请求错误！')
+			endPullToRefresh(isDownRefresh)
+		})
+	}
+
+	function endPullToRefresh(isDownRefresh) {
+		if(isDownRefresh) $pullrefresh.pullRefresh().endPulldownToRefresh()
+		else $pullrefresh.pullRefresh().endPullupToRefresh(false)
+	}
 
 }(mui, document));
