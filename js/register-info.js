@@ -40,6 +40,7 @@
 		}
 	};
 	getFinanceUsers(function(html){
+		html = '<option value="0">选择主管账务</option>' + html
 		mui('#financeUserId')[0].innerHTML = html
 	})
 
