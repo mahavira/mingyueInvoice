@@ -9,6 +9,9 @@
 	// 扩展API准备完成后要执行的操作
 	function plusReady() {
 		user = getState()
+		getFinanceUsers(user.idCode, function(html) {
+			mui('#financeId')[0].innerHTML = html
+		})
 		mui('#name')[0].value = user.name
 		mui('#email')[0].value = user.email
 		mui('#financeId')[0].value = user.financeId
@@ -20,10 +23,6 @@
 		financeId: 'app/user/updateUserFinance'
 	}
 	mui(".settings").on('tap', '#logout', toLogin)
-
-	getFinanceUsers(function(html) {
-		mui('#financeId')[0].innerHTML = html
-	})
 
 	mui.each(urls, function(key, item) {
 		mui("#" + key)[0].addEventListener('blur', function() {

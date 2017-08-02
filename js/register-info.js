@@ -39,10 +39,6 @@
 			}
 		}
 	};
-	getFinanceUsers(function(html){
-		html = '<option value="0">选择主管账务</option>' + html
-		mui('#financeUserId')[0].innerHTML = html
-	})
 
 	mui(".register").on('tap', '#submit', function() {
 		$valids(constraints, function(attributes) {
@@ -65,6 +61,14 @@
 			}, function(xhr, type, errorThrown) {
 				mui.toast('注册失败')
 			});
+		})
+	})
+	
+	mui("#idCode")[0].addEventListener('blur', function() {
+		var idCode =  mui('#idCode')[0].value
+		getFinanceUsers(idCode ,function(html){
+			html = '<option value="0">选择主管账务</option>' + html
+			mui('#financeUserId')[0].innerHTML = html
 		})
 	})
 }(mui, document));

@@ -157,9 +157,10 @@
 			}
 		})
 	}
-	window.getFinanceUsers = function(callback) {
+	window.getFinanceUsers = function(id, callback) {
+		id = id || getState('idCode')
 		$http('app/login/getFinanceUsers', {
-			idCode: 1048577
+			idCode: id
 		}, function(req) {
 			if(req.res_code === 200) {
 				var html = ''
