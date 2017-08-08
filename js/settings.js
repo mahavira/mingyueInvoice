@@ -9,7 +9,7 @@
 	// 扩展API准备完成后要执行的操作
 	function plusReady() {
 		user = getState()
-		getFinanceUsers(user.idCode, function(html) {
+		getFinanceUsers(0, function(html) {
 			mui('#financeId')[0].innerHTML = html
 		})
 		mui('#name')[0].value = user.name

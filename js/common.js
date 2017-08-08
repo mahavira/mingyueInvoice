@@ -158,6 +158,12 @@
 		})
 	}
 	window.getFinanceUsers = function(id, callback) {
+		if (!id) {
+			var office = getState('office')
+			if (office) {
+				id = office.idCode
+			}
+		}
 		id = id || getState('idCode')
 		$http('app/login/getFinanceUsers', {
 			idCode: id
