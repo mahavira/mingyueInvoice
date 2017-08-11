@@ -169,7 +169,10 @@ body{
 	border: 0.5px solid #CFCFCF;
 	border-radius: 10px;
 	margin-top: 28px;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
+}
+.login .remember {
+	margin-bottom: 20px;
 }
 
 .login .mui-input-group:before,
@@ -189,7 +192,7 @@ body{
 	height: 50px;
 }
 
-.login .mui-input-row label {
+.login .mui-input-row .input-left-label {
 	color: #CFCFCF;
 	width: 30%;
 	font-size: 14px;
