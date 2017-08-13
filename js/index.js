@@ -46,7 +46,7 @@
 	mui.plusReady(function() {
 		$pullrefresh = mui('#pullrefresh')
 		var user = getState()
-		mui('#finance')[0].innerHTML = '主管财务：' + user.name + ' ' + user.financeId
+		mui('#finance')[0].innerHTML = '财务主管：' + user.name + ' ' + user.financeId
 	})
 
 	/**

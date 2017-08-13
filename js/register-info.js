@@ -19,7 +19,7 @@
 		},
 		financeUserId: {
 			presence: {
-				message: '请输入主管财务'
+				message: '请输入财务主管'
 			}
 		},
 		password: {
@@ -67,7 +67,7 @@
 	mui("#idCode")[0].addEventListener('blur', function() {
 		var idCode =  mui('#idCode')[0].value
 		getFinanceUsers(idCode ,function(html){
-			html = '<option value="0">选择主管账务</option>' + html
+			html = '<option value="0">选择账务主管</option>' + html
 			mui('#financeUserId')[0].innerHTML = html
 		})
 	})

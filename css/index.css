@@ -230,7 +230,7 @@ body{
 }
 
 .login .bot {
-	position: fixed;
+	position: absolute;
 	bottom: 15px;
 	left: 0;
 	width: 100%;
@@ -338,4 +338,10 @@ body{
 }
 .settings .mui-content{
 	background: #EFF1F4;
+}
+
+@media screen and (max-height:490px){
+    .login .bot {
+    		position: relative;
+    }
 }
