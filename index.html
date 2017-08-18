@@ -45,15 +45,15 @@
 							<div ng-if="hasData" class="mui-card" ng-repeat="item in data">
 								<div class="mui-card-content">
 									<div class="mui-card-content-inner">
-										{{item.name}}
+										{{item.salesName}}
 										<br/>
-										<span class="date">{{item.datetime}}</span>
-										<span class="money">￥{{item.money}}</span>
+										<span class="date">{{item.fpDate}}</span>
+										<span class="money">￥{{item.sumWithTax}}</span>
 									</div>
 								</div>
 								<div class="mui-card-footer">
-									<span><i class="mui-icon mui-icon-flag"></i> <span>{{item.datetime}}</span></span>
-									<span class="mui-badge mui-badge-warning" ng-class="{'mui-badge-warning':item.isPrint,'mm-badge':!item.isPrint}">{{item.isPrint?'未打印':'已打印'}}</span>
+									<span><i class="mui-icon mui-icon-flag"></i> <span>{{item.createDate}}</span></span>
+									<span class="mui-badge mui-badge-warning" ng-class="{'mui-badge-warning':item.isPrint,'mm-badge':!item.isPrint}">{{item.isNewRecord?'未打印':'已打印'}}</span>
 								</div>
 							</div>
 							<div  ng-if="!hasData" style="text-align: center;color: #aaa;">

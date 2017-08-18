@@ -33,15 +33,15 @@
 				message: "密码不一致"
 			}
 		},
-		email: {
-			presence: {
-				message: '请输入Email'
-			}
-		}
+		email: {}
 	};
 
 	mui(".register").on('tap', '#submit', function() {
 		$valids(constraints, function(attributes) {
+			if (attributes.email && validate(attributes, {email: {email: 'x'}})) {
+				mui.toast('无效的Email')
+				return false
+			}
 			var smsCode = getState('smsCode')
 			var mobile = getState('mobile')
 			attributes.roleType = 1

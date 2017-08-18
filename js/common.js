@@ -88,7 +88,6 @@
 
 	function openWindow(id) {
 		mui.openWindow({
-
 			url: id + '.html',
 			show: {
 				aniShow: 'pop-in'
