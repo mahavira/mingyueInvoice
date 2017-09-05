@@ -46,7 +46,18 @@
 	mui.plusReady(function() {
 		$pullrefresh = mui('#pullrefresh')
 		var user = getState()
-		mui('#finance')[0].innerHTML = '财务主管：' + user.name + ' ' + user.financeId
+//		mui('#finance')[0].innerHTML = '财务主管：' + user.name + ' ' + user.financeId
+		
+		getFinanceUsers(0, function(html, data) {
+			var html = ''
+			mui.each(data, function(index, item) {
+				if (user.financeId == item.id) {
+					html = item.name
+					return false
+				}
+			})
+			mui('#finance')[0].innerHTML = '财务主管：' + html
+		})
 	})
 
 	/**

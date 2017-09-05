@@ -173,7 +173,7 @@
 				mui.each(req.res_data, function(index, item) {
 					html += '<option value="' + item.id + '" ' + (financeId == item.id ? 'selected' : '') + '>' + item.name + '</option>'
 				})
-				callback(html)
+				callback(html, req.res_data)
 			} else {
 
 			}

@@ -15,6 +15,9 @@
 		mui('#name')[0].value = user.name
 		mui('#email')[0].value = user.email
 		mui('#financeId')[0].value = user.financeId
+		mui('#company_id')[0].innerText = user.office.idCode || ''
+		mui('#company_name')[0].innerText = user.office.name || ''
+		mui('#mobile')[0].innerText = user.mobile || ''
 	}
 
 	var urls = {

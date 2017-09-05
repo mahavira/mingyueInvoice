@@ -28,7 +28,7 @@
 		$scope.handleClick = function(item) {
 			item.isRead = true
 			var id = item.id
-			$http('app/bill/readMyMessage', {
+			$http('app/message/readMyMessage', {
 				id: id
 			}, function(req) {
 				if(req.res_code === 200) {} else {}
