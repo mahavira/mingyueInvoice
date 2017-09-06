@@ -25,7 +25,8 @@
 		password: {
 			presence: {
 				message: '请输入登录密码'
-			}
+			},
+			length: {minimum: 6,message: '密码至少6位'}
 		},
 		passwordAgain: {
 			equality: {
@@ -36,9 +37,13 @@
 		email: {}
 	};
 
+	var isSubmit = false
 	mui(".register").on('tap', '#submit', function() {
+		if (isSubmit) return false
+		isSubmit = true
 		$valids(constraints, function(attributes) {
 			if (attributes.email && validate(attributes, {email: {email: 'x'}})) {
+				isSubmit = false
 				mui.toast('无效的Email')
 				return false
 			}
@@ -50,6 +55,7 @@
 				mobile: mobile
 			})
 			$http('app/login/register', attributes, function(req) {
+				isSubmit = false
 				if(req.res_code === 200) {
 					mui.toast('注册成功！')
 					setTimeout(function() {
@@ -59,6 +65,7 @@
 					mui.toast(req.res_data ? req.res_data : '注册失败')
 				}
 			}, function(xhr, type, errorThrown) {
+				isSubmit = false
 				mui.toast('注册失败')
 			});
 		})
