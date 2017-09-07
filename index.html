@@ -53,7 +53,7 @@
 								</div>
 								<div class="mui-card-footer">
 									<span><i class="mui-icon mui-icon-flag"></i> <span>{{item.createDate}}</span></span>
-									<span class="mui-badge mui-badge-warning" ng-class="{'mui-badge-warning':item.isPrint,'mm-badge':!item.isPrint}">{{item.isNewRecord?'未打印':'已打印'}}</span>
+									<span class="mui-badge mui-badge-warning" ng-class="{'mui-badge-warning':item.fpHandleStatus!='3','mm-badge':item.fpHandleStatus=='3'}">{{item.fpHandleStatus!='3'?'未打印':'已打印'}}</span>
 								</div>
 							</div>
 							<div  ng-if="!hasData" style="text-align: center;color: #aaa;">
