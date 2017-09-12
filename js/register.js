@@ -116,7 +116,8 @@
 		}
 		startCountdown()
 		$http('app/sms/sendSmsCode', {
-			mobile: mobile
+			mobile: mobile,
+			type: 0
 		}, function(req) {
 			if(req.res_code !== 200) {
 				mui.toast("发送错误")
