@@ -39,7 +39,7 @@
 	function fetch(isDownRefresh) {
 		isDownRefresh = isDownRefresh || false
 		$http('app/message/getMyMessages', {
-			pageNo: isDownRefresh ? 0 : pageNo
+			pageNo: isDownRefresh ? 1 : pageNo
 		}, function(req) {
 			if(req.res_code === 200) {
 				if(!isDownRefresh) pageNo++
@@ -60,9 +60,19 @@
 			} else {
 				endPullToRefresh(isDownRefresh)
 			}
+			setMessageRead()
 		}, function(xhr, type, errorThrown) {
 			mui.toast('请求错误！')
 			endPullToRefresh(isDownRefresh)
+		})
+	}
+	
+	/**
+	 * 设置消息为已读
+	 */
+	function setMessageRead () {
+		$http('app/message/changeAll', {}, function(req) {
+		}, function(xhr, type, errorThrown) {
 		})
 	}
 

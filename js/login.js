@@ -7,7 +7,7 @@
 
 	// 扩展API准备完成后要执行的操作
 	function plusReady() {
-		plus.navigator.setStatusBarBackground("#FFF")
+//		plus.navigator.setStatusBarBackground("#FFF")
 		var state = getState()
 		if(state.token) {
 			var mainPage = mui.preload({

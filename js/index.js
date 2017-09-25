@@ -8,13 +8,22 @@
 		submit(link)
 	})
 
+	mui('#link')[0].addEventListener('input', function () {
+		var val = mui('#link')[0].value
+		if (val) {
+			mui('#submit')[0].disabled = false
+		} else {
+			mui('#submit')[0].disabled = true
+		}
+	})
+
 	function submit(link) {
 		$http('app/bill/uploadUrl', {
 			billUrl: link,
 			financeId: getState('financeId')
 		}, function(req) {
 			if(req.res_code == 200) {
-				mui.toast('上传成功！')
+				alert('上传成功！')
 				fetch(true)
 				setTimeout(function() {
 					mui('#tabbar')[0].classList.remove('mui-active')
@@ -23,14 +32,37 @@
 					mui('.mui-tab-item')[1].classList.add('mui-active')
 					mui('#link')[0].value = ''
 				}, 1500)
-			} else mui.toast(req.res_data ? req.res_data : '上传失败')
+			} else alert(req.res_data ? req.res_data : '上传失败')
 		}, function(xhr, type, errorThrown) {
-			mui.toast('上传失败！')
+			alert('上传失败！')
 		})
 	}
 
+	var newMessTimer = null
+	function newMessage () {
+		clearTimeout(newMessTimer)
+		newMessTimer = setTimeout(function () {
+			$http('app/message/getCount', {}, function(req) {
+				if(req.res_code == 200) {
+					if (req.res_data == 1) {
+						mui('#newMessage')[0].style.display = 'block'
+					} else {
+						mui('#newMessage')[0].style.display = 'none'
+					}
+				}
+				newMessage()
+			}, function(xhr, type, errorThrown) {
+				newMessage()
+			})
+		}, 3000)
+	}
+
 	mui.init({
-		statusBarBackground: "#509AFF",
+//		statusBarBackground: "#509AFF",
+		swipeBack: true,
+		beforeback: function(){
+			return false
+		},
 		pullRefresh: {
 			container: '#pullrefresh',
 			down: {
@@ -58,6 +90,7 @@
 			})
 			mui('#finance')[0].innerHTML = '财务主管：' + html
 		})
+		newMessage()
 	})
 
 	/**

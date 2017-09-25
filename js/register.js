@@ -6,7 +6,7 @@
 	}
 	// 扩展API准备完成后要执行的操作
 	function plusReady() {
-		plus.navigator.setStatusBarBackground("#509AFF")
+//		plus.navigator.setStatusBarBackground("#509AFF")
 	}
 	var constraints = {
 		mobile: {

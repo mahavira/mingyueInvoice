@@ -5,7 +5,7 @@
 		doc.addEventListener("plusready", plusReady, false);
 	}
 	function plusReady() {
-		plus.navigator.setStatusBarBackground("#509AFF")
+//		plus.navigator.setStatusBarBackground("#509AFF")
 	}
 	var constraints = {
 		mobile: {

@@ -14,7 +14,7 @@
 	<body class="index">
 		<header class="mui-bar mui-bar-nav" style="box-shadow: none;">
 			<a class="mui-icon mui-icon-gear mui-icon mui-icon-left-nav mui-pull-left" onclick="swap('settings')"></a>
-			<a class="mui-icon mui-icon-email mui-icon mui-icon-right-nav mui-pull-right" onclick="swap('message')"></a>
+			<a class="mui-icon mui-icon-email mui-icon mui-icon-right-nav mui-pull-right" onclick="swap('message')"><i id="newMessage" class="new-message"></i></a>
 			<h2 class="mui-title">上传发票</h2>
 		</header>
 		<nav class="mui-bar mui-bar-tab">
@@ -35,7 +35,7 @@
 						<textarea class="mm-textarea" id="link" rows="4" placeholder="请复制电子发票链接地址粘贴在此处，提交上传！" style="margin-bottom: 10px;;"></textarea>
 						<p style="font-size: 12px;color:#8792A1;" id="finance"></p>
 					</div>
-					<button type="button" id="submit" class="mui-btn mui-btn-primary mui-btn-block">提交</button>
+					<button type="button" id="submit" class="mui-btn mui-btn-primary mui-btn-block" disabled="disabled">提交</button>
 				</div>
 			</div>
 			<div id="tabbar-with-chat" class="mui-control-content" style="position:absolute;top: 0; bottom: 50px;width:100%">
