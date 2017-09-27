@@ -16,7 +16,13 @@
 			mui('#submit')[0].disabled = true
 		}
 	})
-
+	
+	mui('.index').on('tap', '#tab-item-upload', function(e) {
+		mui('.mui-title')[0].innerText = '上传发票'
+	})
+	mui('.index').on('tap', '#tab-item-list', function(e) {
+		mui('.mui-title')[0].innerText = '我的发票'
+	})
 	function submit(link) {
 		$http('app/bill/uploadUrl', {
 			billUrl: link,
@@ -30,6 +36,7 @@
 					mui('#tabbar-with-chat')[0].classList.add('mui-active')
 					mui('.mui-tab-item')[0].classList.remove('mui-active')
 					mui('.mui-tab-item')[1].classList.add('mui-active')
+					mui('.mui-title')[0].innerText = '我的发票'
 					mui('#link')[0].value = ''
 				}, 1500)
 			} else alert(req.res_data ? req.res_data : '上传失败')
