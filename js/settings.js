@@ -18,7 +18,7 @@
 		mui('#company_id')[0].innerText = user.office.idCode || ''
 		mui('#company_name')[0].innerText = user.office.name || ''
 		mui('#mobile')[0].innerText = user.mobile || ''
-		mui('#taxpayerIdNum')[0].innerText = user.taxpayerIdNum || ''
+		mui('#taxpayerIdNum')[0].innerText = user.office.taxpayerIdNum || ''
 	}
 
 	var urls = {
