@@ -57,7 +57,7 @@
 						mui('#newMessage')[0].style.display = 'none'
 					}
 				}
-				newMessage()
+				// newMessage()
 			}, function(xhr, type, errorThrown) {
 				newMessage()
 			})
@@ -127,7 +127,11 @@
 	function fetch(isDownRefresh) {
 		isDownRefresh = isDownRefresh || false
 		$http('app/bill/getMyBills', {
-			pageNo: isDownRefresh ? 0 : pageNo
+			pageNo: isDownRefresh ? 1 : pageNo,
+			beginMoney:'',
+			endMoney:'',
+			beginDate:'',
+			endDate:''
 		}, function(req) {
 			// 测试
 //						req.res_data.list = [{
