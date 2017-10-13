@@ -73,7 +73,7 @@
 		},
 		"NativeObj": {
 			"description": "原生对象"
-		}
+		},"NativeUI":{}
 	},
 	"plus": {
 		"splashscreen": {
