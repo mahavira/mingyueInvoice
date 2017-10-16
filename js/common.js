@@ -50,8 +50,6 @@
 		} else if(arguments.length > 1) {
 			state[arguments[0]] = arguments[1]
 		}
-		console.log(JSON.stringify(state))
-		//		alert(JSON.stringify(state))
 		localStorage.setItem('$state', JSON.stringify(state));
 	}
 	/**
@@ -83,7 +81,6 @@
 	window.toLogin = function() {
 		clearState()
 		swap('login')
-		plus.webview.currentWebview().close()
 	}
 
 	function openWindow(id) {
@@ -94,7 +91,7 @@
 			},
 			preload: false,
 			styles: {
-				popGesture: 'hide'
+				popGesture: 'none'// 'hide', 'close','none'
 			},
 			waiting: {
 				autoShow: false

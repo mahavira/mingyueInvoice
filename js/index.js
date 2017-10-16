@@ -17,6 +17,16 @@
 		}
 	})
 	
+	mui('#link')[0].addEventListener('focus', function () {
+		setTimeout(function(){
+			document.body.scrollTop = 0
+			mui('#banner')[0].style.display = 'none'
+		},100)
+	})
+	mui('#link')[0].addEventListener('blur', function () {
+		mui('#banner')[0].style.display = 'block'
+	})
+	
 	mui('.index').on('tap', '#tab-item-upload', function(e) {
 		mui('.mui-title')[0].innerText = '上传发票'
 	})
@@ -24,12 +34,16 @@
 		mui('.mui-title')[0].innerText = '我的发票'
 	})
 	function submit(link) {
+		var $isLoading = mui('#isLoading')[0]
+		$isLoading.style.display = 'block'
 		$http('app/bill/uploadUrl', {
 			billUrl: link,
 			financeId: getState('financeId')
 		}, function(req) {
+			$isLoading.style.display = 'none'
 			if(req.res_code == 200) {
-				alert('上传成功！')
+				mui.alert('上传成功!')
+
 				fetch(true)
 				setTimeout(function() {
 					mui('#tabbar')[0].classList.remove('mui-active')
@@ -39,9 +53,10 @@
 					mui('.mui-title')[0].innerText = '我的发票'
 					mui('#link')[0].value = ''
 				}, 1500)
-			} else alert(req.res_data ? req.res_data : '上传失败')
+			} else mui.alert(req.res_data ? req.res_data : '上传失败')
 		}, function(xhr, type, errorThrown) {
-			alert('上传失败！')
+			$isLoading.style.display = 'none'
+			mui.alert('上传失败！')
 		})
 	}
 
@@ -57,7 +72,7 @@
 						mui('#newMessage')[0].style.display = 'none'
 					}
 				}
-				// newMessage()
+				 newMessage()
 			}, function(xhr, type, errorThrown) {
 				newMessage()
 			})
@@ -66,10 +81,10 @@
 
 	mui.init({
 //		statusBarBackground: "#509AFF",
-		swipeBack: true,
-		beforeback: function(){
-			return false
-		},
+//		swipeBack: false,
+//		beforeback: function(){
+//			return false
+//		},
 		pullRefresh: {
 			container: '#pullrefresh',
 			down: {
@@ -81,12 +96,32 @@
 			}
 		}
 	})
+	
+	//备份mui.back，mui.back已将窗口关闭逻辑封装的比较完善（预加载及父子窗口），因此最好复用mui.back
+	var old_back = mui.back;
+  var backButtonPress = 0;
+  mui.back = function(event) {
+      backButtonPress++;
+      if (backButtonPress > 1) {
+          //退出程序
+          //plus.runtime.quit();
+          //返回桌面（后台）
+          var main = plus.android.runtimeMainActivity();
+          main.moveTaskToBack(false);
+      } else {
+          plus.nativeUI.toast('再按一次返回桌面');
+      }
+      setTimeout(function() {
+          backButtonPress = 0;
+      }, 2000);
+      return false;
+  };
+
 	var $pullrefresh = null
 	mui.plusReady(function() {
 		$pullrefresh = mui('#pullrefresh')
 		var user = getState()
 //		mui('#finance')[0].innerHTML = '财务主管：' + user.name + ' ' + user.financeId
-		
 		getFinanceUsers(0, function(html, data) {
 			var html = ''
 			mui.each(data, function(index, item) {
@@ -133,29 +168,6 @@
 			beginDate:'',
 			endDate:''
 		}, function(req) {
-			// 测试
-//						req.res_data.list = [{
-//								id: 1,
-//								name: 'xx',
-//								datetime: '2012-12-12',
-//								money: 100,
-//								isPrint: true
-//							},
-//							{
-//								id: 2,
-//								name: 'xx',
-//								datetime: '2012-12-12',
-//								money: 120,
-//								isPrint: false
-//							},
-//							{
-//								id: 3,
-//								name: 'xx',
-//								datetime: '2012-12-12',
-//								money: 120,
-//								isPrint: false
-//							}
-//						]
 			if(req.res_code === 200 && req.res_data.list) {
 				if(!isDownRefresh) pageNo++
 					var list = {}

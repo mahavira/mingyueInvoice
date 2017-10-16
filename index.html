@@ -29,13 +29,19 @@
 		</nav>
 		<div class="mui-content">
 			<div id="tabbar" class="mui-control-content mui-active">
-				<img src="./img/bag.png" style="width:100%" />
-				<div class="mui-content-padded">
+				<img id="banner" src="./img/bag.png" style="width:100%" />
+				<div class="mui-content-padded" style="position:relative">
 					<div class="mui-input-row" style="margin: 15px 0 0px;">
 						<textarea class="mm-textarea" id="link" rows="4" placeholder="请复制电子发票链接地址粘贴在此处，提交上传！" style="margin-bottom: 10px;;"></textarea>
 						<p style="font-size: 12px;color:#8792A1;" id="finance"></p>
 					</div>
 					<button type="button" id="submit" class="mui-btn mui-btn-primary mui-btn-block" disabled="disabled">提交</button>
+
+					<div class="mui-backdrop" id="isLoading" style="opacity:1;position:absolute;background-color: rgba(255,255,255,.3);display: none;">
+						<div class="mui-pull" style="top: 50px;">
+							<div class="mui-pull-loading mui-icon mui-spinner" style="transition: -webkit-transform 0.3s ease-in; transform: rotate(180deg); animation: spinner-spin 1s step-end infinite;"></div>
+							<div class="mui-pull-caption">正在提交...</div></div>
+					</div>
 				</div>
 			</div>
 			<div id="tabbar-with-chat" class="mui-control-content" style="position:absolute;top: 0; bottom: 50px;width:100%">

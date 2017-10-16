@@ -63,8 +63,9 @@
             localStorage.removeItem('remember:password')
             localStorage.removeItem('remember')
           }
-          
+
 					swap('index')
+//					plus.webview.currentWebview().close()
 				} else {
 					mui.toast(req.res_data ? req.res_data : '登录失败')
 				}
