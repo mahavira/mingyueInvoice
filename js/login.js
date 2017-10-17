@@ -11,7 +11,7 @@
 		var state = getState()
 		if(state.token) {
 			var mainPage = mui.preload({
-				"id": 'index',
+				"id": 'index.html',
 				"url": 'index.html'
 			});
 			mainPage.show("pop-in");

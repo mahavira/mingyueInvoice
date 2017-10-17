@@ -80,18 +80,20 @@
 
 	window.toLogin = function() {
 		clearState()
+		var ws=plus.webview.currentWebview()
+		plus.webview.close(ws)
 		swap('login')
 	}
-
 	function openWindow(id) {
 		mui.openWindow({
 			url: id + '.html',
+			id: id + '.html',
 			show: {
 				aniShow: 'pop-in'
 			},
 			preload: false,
 			styles: {
-				popGesture: 'none'// 'hide', 'close','none'
+				popGesture: 'none' // 'hide', 'close','none'
 			},
 			waiting: {
 				autoShow: false
@@ -123,6 +125,15 @@
 		}
 		if(success) success(attributes)
 	}
+	
+	window.getCurrentDisplayWebviewId = function () {
+		var wvs = plus.webview.getDisplayWebview()
+		if (wvs.length) {
+			ws = wvs[0]
+			return ws.id
+		}
+		return ''
+	}
 	/**
 	 * 通用接口请求封装
 	 * @param {Object} url
@@ -145,11 +156,19 @@
 			type: 'POST',
 			success: function(req) {
 				console.log('请求success', JSON.stringify(req))
-				success(req)
+				if (req.res_code == '901' || req.res_code == 901) {
+					if (getCurrentDisplayWebviewId() != 'login.html') {
+						mui.alert('登录信息失效,请重新登录','提示' ,'确定', function(){
+							toLogin()
+						})
+					}
+				} else {
+					success(req)
+				}
 			},
 			error: function(req) {
 				console.log('请求error')
-				error()
+				if(error) error()
 			}
 		})
 	}

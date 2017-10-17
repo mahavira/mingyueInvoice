@@ -64,6 +64,11 @@
 	function newMessage () {
 		clearTimeout(newMessTimer)
 		newMessTimer = setTimeout(function () {
+			if (getCurrentDisplayWebviewId() != 'index.html') {
+				newMessage()
+				return false
+			}
+
 			$http('app/message/getCount', {}, function(req) {
 				if(req.res_code == 200) {
 					if (req.res_data == 1) {

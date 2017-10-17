@@ -12,6 +12,7 @@
 		getFinanceUsers(0, function(html) {
 			mui('#financeId')[0].innerHTML = html
 		})
+		if (!user || !user.name) return
 		mui('#name')[0].value = user.name
 		mui('#email')[0].value = user.email
 		mui('#financeId')[0].value = user.financeId
