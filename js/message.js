@@ -19,7 +19,9 @@
 	var pageNo = 1
 	var pageItem = 10
 	var app = angular.module('myApp', [])
+	console.log('not-controller')
 	app.controller('myCtrl', function($scope) {
+		console.log('controller')
 		$scope.data = {}
 		$scope.hasData = true
 		scope = $scope
