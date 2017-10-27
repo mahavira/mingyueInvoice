@@ -21,7 +21,7 @@
 	/**
 	 * api根路径
 	 */
-	window.baseUrl = env === 'production' ? 'http://120.92.45.7/project_dzff/' : 'http://localhost:3000/project_dzff/'
+	window.baseUrl = env === 'production' ? 'http://112.126.75.5/project_dzff/' : 'http://localhost:3000/project_dzff/'
 
 	/**
 	 * 获取状态
