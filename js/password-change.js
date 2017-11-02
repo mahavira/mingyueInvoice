@@ -25,6 +25,18 @@
 				minimum: 6,
 				message: "密码不足6位数"
 			}
+		},
+		confirmPassword: {
+			presence: {
+				message: '请再次输入新密码'
+			},
+			equality: {
+	      attribute: "newPassword",
+	      message: "两次输入密码不一致",
+	      comparator: function(v1, v2) {
+	        return v1 == v2
+	      }
+	    }
 		}
 	};
 	mui(".password-change").on('tap', '#submit', function() {
