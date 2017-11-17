@@ -23,6 +23,10 @@
 	app.controller('myCtrl', function($scope) {
 		console.log('controller')
 		$scope.data = {}
+//		$scope.data = [{
+//			createDate: '2012-12-12 22:22:22',
+//			content: 'fd魂牵梦萦魂牵梦萦魂牵梦萦魂牵梦萦魂牵梦萦魂牵梦萦魂牵梦萦魂牵梦萦'
+//		}]
 		$scope.hasData = true
 		scope = $scope
 		fetch(true)

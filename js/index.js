@@ -48,7 +48,7 @@
 		}, function(req) {
 			$isLoading.style.display = 'none'
 			if(req.res_code == 200) {
-				mui.alert('上传成功!')
+				mui.alert('提交成功!')
 				
 				fetch(true)
 //				setTimeout(function() {
@@ -58,11 +58,11 @@
 //					mui('.mui-tab-item')[1].classList.add('mui-active')
 //					mui('.mui-title')[0].innerText = '我的发票'
 //				}, 1500)
-			} else mui.alert(req.res_data ? req.res_data : '上传失败')
+			} else mui.alert(req.res_data ? req.res_data : '提交失败')
 			clearTextarea()
 		}, function(xhr, type, errorThrown) {
 			$isLoading.style.display = 'none'
-			mui.alert('上传失败！')
+			mui.alert('提交失败！')
 			clearTextarea()
 		})
 	}

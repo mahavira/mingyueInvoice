@@ -118,6 +118,10 @@ body{
 	color: #333;
 	font-size: 16px;
 	font-weight: 400;
+  overflow: auto;
+  white-space: inherit;
+  text-overflow: inherit;
+  line-height: unset;
 }
 
 .message .mui-ellipsis.date {
@@ -142,7 +146,7 @@ body{
 }
 
 .guide p {
-	padding: 0 15px;
+
 	font-size: 12px;
 	margin-top: 10px;
 }
